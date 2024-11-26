@@ -2,6 +2,10 @@ require('dotenv').config();
 var express = require('express');
 const cookieParser = require("cookie-parser");
 const connectDb = require('./config/db'); 
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsdoc = require('swagger-jsdoc');
+const swaggerOptions = require('./config/swaggerConfig'); // Import the configuration
+
 const userRoutes = require('./routes/user');
 const taskRoutes = require('./routes/task');
 
@@ -15,6 +19,11 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+
+// Swagger Setup
+const swaggerDocs = swaggerJsdoc(swaggerOptions);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 
 app.use('/api/users', userRoutes);
