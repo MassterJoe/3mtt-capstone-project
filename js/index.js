@@ -42,7 +42,7 @@ document.getElementById('registerForm').addEventListener('submit', async (event)
 
 
   document.getElementById('loginForm').addEventListener('submit', async (event) => {
-    //event.preventDefault(); // Prevent form from submitting normally
+    event.preventDefault(); // Prevent form from submitting normally
   
     // Get form data
     const formData = new FormData(event.target);
