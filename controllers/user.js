@@ -1,6 +1,5 @@
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
-
 // Register a new user
 exports.registerUser = async (req, res) => {
   try {
@@ -28,23 +27,58 @@ exports.loginUser = async (req, res) => {
       expiresIn: '1d',
     });
 
-    res.status(200).json({ token, userId: user._id, username: user.username });
+
+    // Send response with token and user details
+    res.status(200).json({ 
+      message: 'Login successful', 
+      token, 
+      userId: user._id, 
+      username: user.username 
+    });
+    
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
 };
 
-// Fetch user details
 exports.getUser = async (req, res) => {
-  try {
-    const user = await User.findById(req.userId).populate('tasks');
+  const authHeader = req.headers.authorization;
+ 
+  const token = authHeader && authHeader.split(" ")[1];
+ 
+  if (!token) {
+    return res.status(401).json({
+      status: "error",
+      message: "Unauthorized: No token provided. Please log in again.",
+    });
+  }
 
+  try {
+    // Verify the JWT
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+ 
+    const userId = decodedToken.userId;
+
+    // Fetch the user by ID
+    const user = await User.findById(userId).populate("tasks");
+ 
     if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+      return res.status(404).json({
+        status: "error",
+        message: "User not found. Please log in again.",
+      });
     }
 
-    res.status(200).json(user);
+    res.status(200).json({
+      status: "success",
+      message: "User record fetched successfully.",
+      data: user,
+    });
   } catch (error) {
-    res.status(500).json({ error: 'Server error' });
+ 
+    return res.status(500).json({
+      status: "error",
+      message: "Internal server error.",
+    });
   }
 };

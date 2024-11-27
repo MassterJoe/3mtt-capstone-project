@@ -1,5 +1,5 @@
 const swaggerOptions = {
-    definition: {
+    swaggerDefinition: {
       openapi: '3.0.0',
       info: {
         title: 'TaskMaster API',
@@ -13,7 +13,7 @@ const swaggerOptions = {
         },
       ],
     },
-    apis: ['./routes/*.js'], // Point to route files for documentation
+    apis: ['./routes/*.js']
   };
   
   module.exports = swaggerOptions;

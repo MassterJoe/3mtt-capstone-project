@@ -5,6 +5,7 @@ const connectDb = require('./config/db');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 const swaggerOptions = require('./config/swaggerConfig'); // Import the configuration
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
 const userRoutes = require('./routes/user');
 const taskRoutes = require('./routes/task');
@@ -22,10 +23,7 @@ app.use(cookieParser());
 
 
 // Swagger Setup
-const swaggerDocs = swaggerJsdoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
-
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use('/api/users', userRoutes);
 app.use('/api/tasks', taskRoutes);
 
