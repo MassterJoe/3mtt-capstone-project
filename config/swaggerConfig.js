@@ -11,6 +11,10 @@ const swaggerOptions = {
           url: 'http://localhost:5000/api',
           description: 'Development server',
         },
+        {
+          url: 'https://threemtt-capstone-project-c0vy.onrender.com/api',
+          description: 'Production server'
+        }
       ],
     },
     apis: ['./routes/*.js']

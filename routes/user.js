@@ -27,6 +27,54 @@ const router = express.Router();
 /**
  * @swagger
  * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           description: The unique identifier of the user
+ *           example: "60b74f1b745d7c3c7bfbf4f1"
+ *         name:
+ *           type: string
+ *           description: The full name of the user
+ *           example: "John Doe"
+ *         username:
+ *           type: string
+ *           description: The username chosen by the user
+ *           example: "john_doe"
+ *         email:
+ *           type: string
+ *           format: email
+ *           description: The email address of the user
+ *           example: "john.doe@example.com"
+ *         tasks:
+ *           type: array
+ *           items:
+ *             type: string
+ *             description: Task ID associated with the user
+ *           description: List of task IDs assigned to the user
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           description: The date the user was created
+ *           example: "2024-01-01T12:00:00Z"
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           description: The date the user details were last updated
+ *           example: "2024-01-02T12:00:00Z"
+ *       required:
+ *         - name
+ *         - username
+ *         - email
+ *         - password
+ */
+
+
+/**
+ * @swagger
+ * components:
  *   responses:
  *     UnauthorizedError:
  *       description: Unauthorized. Access token is missing or invalid.
