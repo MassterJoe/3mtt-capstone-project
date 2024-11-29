@@ -5,6 +5,8 @@ const {
   getTasks,
   updateTask,
   deleteTask,
+  getTaskById,
+  searchTasks
 } = require('../controllers/task');
 
 const router = express.Router();
@@ -346,4 +348,132 @@ router.put('/:taskId', updateTask);
 // Delete a task (protected route)
 router.delete('/:taskId', deleteTask);
 
+
+
+/**
+ * @swagger
+ * /tasks/{taskId}:
+ *   get:
+ *     summary: Get a task by ID
+ *     tags: [Tasks]
+ *     security:
+ *       - bearerAuth: []  # Use the defined security scheme
+ *     parameters:
+ *       - name: taskId
+ *         in: path
+ *         required: true
+ *         description: The ID of the task to fetch
+ *         schema:
+ *           type: string
+ *     responses:
+ *       '200':
+ *         description: Successfully fetched the task
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "success"
+ *                 message:
+ *                   type: string
+ *                   example: "Task fetched successfully."
+ *                 task:
+ *                   $ref: '#/components/schemas/Task'
+ *       '400':
+ *         description: Invalid task ID provided
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Invalid task ID"
+ *       '401':
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       '404':
+ *         description: Task not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 error:
+ *                   type: string
+ *                   example: "Task not found"
+ *       '500':
+ *         $ref: '#/components/responses/InternalServerError'
+ */
+
+router.get('/:taskId', getTaskById);
+
+/**
+ * @swagger
+ * /tasks/x/search:
+ *   get:
+ *     summary: Search tasks by title or description
+ *     tags: [Tasks]
+ *     security:
+ *       - bearerAuth: []  # Use the defined security scheme
+ *     parameters:
+ *       - name: query
+ *         in: query
+ *         required: true
+ *         description: Search term to match in the title or description of tasks.
+ *         schema:
+ *           type: string
+ *           example: "documentation"
+ *     responses:
+ *       '200':
+ *         description: Successfully fetched tasks matching the search query
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "success"
+ *                 message:
+ *                   type: string
+ *                   example: "Tasks fetched successfully."
+ *                 tasks:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Task'
+ *       '400':
+ *         description: Search query is missing or invalid
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "error"
+ *                 message:
+ *                   type: string
+ *                   example: "Search query is required."
+ *       '401':
+ *         $ref: '#/components/responses/UnauthorizedError'
+ *       '404':
+ *         description: No tasks found matching the search query
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "error"
+ *                 message:
+ *                   type: string
+ *                   example: "No tasks found matching the search criteria."
+ *       '500':
+ *         $ref: '#/components/responses/InternalServerError'
+ */
+
+router.get('/x/search', searchTasks);
 module.exports = router;
