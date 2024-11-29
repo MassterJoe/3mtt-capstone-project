@@ -108,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
         const token = localStorage.getItem("authToken");
     
-        // Fetch the task data first to populate the form for editing
         try {
             const response = await fetch(`https://threemtt-capstone-project-c0vy.onrender.com/api/tasks/${taskId}`, {
                 method: "GET",
@@ -117,32 +116,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 },
             });
     
-            if (response.status === 404) {
-                alert("Task not found. It may have been deleted.");
-                return;
-            }
+            const result = await response.json();
     
-            const task = await response.json();
+            if (response.ok && result.status === "success") {
+                const task = result.task;
     
-            if (response.ok && task) {
-                // Populate the form with the task details for editing
-                document.getElementById("title").value = task.title;
-                document.getElementById("description").value = task.description;
-                document.getElementById("deadline").value = task.deadline.substring(0, 10); // Date format adjustment
-                document.getElementById("priority").value = task.priority;
-                document.getElementById("status").value = task.status;
+                // Use fallback values
+                document.getElementById("title").value = task.title || "";
+                document.getElementById("description").value = task.description || "";
+                document.getElementById("deadline").value = task.deadline 
+                    ? task.deadline.substring(0, 10) // Convert to `YYYY-MM-DD`
+                    : ""; // Fallback for missing deadline
+                document.getElementById("priority").value = task.priority || "medium";
+                document.getElementById("status").value = task.status || "pending";
     
-                submitBtn.innerText = "Update Task"; // Change button text to "Update Task"
-                taskForm.dataset.editingId = taskId; // Store the task ID in the form for later submission
+                submitBtn.innerText = "Update Task"; // Change button text
+                taskForm.dataset.editingId = taskId; // Store editing ID
             } else {
-                alert(`Error: ${task.message || "Failed to fetch task for editing"}`);
+                alert(`Error: ${result.message || "Failed to fetch task for editing"}`);
             }
         } catch (error) {
             console.error("Error fetching task for editing:", error);
             alert("Error: Unable to fetch task for editing. Please try again.");
         }
     }
-    
     
     taskForm.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -163,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     
         const isEditing = taskForm.dataset.editingId;
-        const method = isEditing ? "PUT" : "POST"; // "PUT" for edit, "POST" for create
+        const method = isEditing ? "PUT" : "POST";
         const url = isEditing 
             ? `https://threemtt-capstone-project-c0vy.onrender.com/api/tasks/${taskForm.dataset.editingId}` 
             : "https://threemtt-capstone-project-c0vy.onrender.com/api/tasks";
@@ -182,10 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
     
             if (response.ok) {
                 alert(isEditing ? "Task updated successfully!" : "Task created successfully!");
-                fetchTasks(); // Refresh the task list
-                taskForm.reset(); // Reset the form
-                submitBtn.innerText = "Create Task"; // Reset the submit button text
-                delete taskForm.dataset.editingId; // Clear the editing ID
+                fetchTasks(); // Refresh tasks
+                taskForm.reset(); // Reset form fields
+                submitBtn.innerText = "Create Task"; // Reset button text
+                delete taskForm.dataset.editingId; // Clear editing ID
             } else {
                 alert(`Error: ${result.message || "Failed to update task"}`);
             }
@@ -194,4 +191,4 @@ document.addEventListener("DOMContentLoaded", () => {
             alert("Error: Unable to submit task. Please try again.");
         }
     });
-});
+});    
