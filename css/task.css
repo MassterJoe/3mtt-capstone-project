@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;700&display=swap');
+
+
+header h1{
+    color: #F5F2FF;
+    font-family: 'Poppins';
+    font-size:500%;
+}
+
+
+body{
+    font-family: 'Poppins', sans-serif;
+    display: grid;
+    place-items: center;
+    margin-top: 10%;
+}
+
+#taskFormContainer{
+    padding: 20px;
+    border: solid;
+    height: auto;
+    width: auto;
+}
+.task-title{
+    padding: 15px 0px;
+}
+
+.description{
+    padding: 15px 0px;
+
+}
+.deadline{
+    padding: 15px 0px;
+
+}
+
+.priority{
+    padding: 15px 0px;
+
+}
+
+.status{
+    padding: 15px 0px;
+
+}

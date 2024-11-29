@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster App</title>
+    <link rel="stylesheet" href="../css/task.css">
+</head>
+<body>
+
+    <!-- Task creation form HTML -->
+    <div id="taskFormContainer">
+        <form id="taskForm">
+            <div id="task-title">
+                <label for="title">Task Title:</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+            <div class="description">
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" required></textarea>
+            </div>
+
+            <div class="deadline">
+                <label for="deadline">Deadline:</label>
+                <input type="date" id="deadline" name="deadline" required>
+            </div>
+            <div class="priority">
+                <label for="priority">Priority:</label>
+                <select id="priority" name="priority" required>
+                    <option value="high">High</option>
+                    <option value="medium">Medium</option>
+                    <option value="low">Low</option>
+                </select><br>
+            </div>
+            <div class="status">
+                <label for="status">Status:</label>
+                <select id="status" name="status" required>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select><br>
+            </div>
+
+            <button type="submit" id="submitBtn">Create Task</button>
+            <div id="loadingMessage" style="display: none;">Loading...</div>
+        </form>
+    </div>
+
+    <!-- Task controls -->
+    <div id="taskControls">
+        <button id="displayTasksBtn">Display Tasks</button>
+    </div>
+
+    <!-- Task list -->
+    <div id="taskListContainer">
+        <h2>Your Tasks</h2>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script src="../js/create-task.js"></script>
+</body>
+</html>
