@@ -29,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
       localStorage.setItem('authToken', result.token);
       alert('Login successful! Redirecting to dashboard...');
 
-      window.location.href = './dashboard.html'; // Redirect to dashboard page
+      window.location.href = '/dashboard.html'; // Redirect to dashboard page
     } else {
       alert(`Error: ${result.message || 'Login failed. Please try again.'}`);
     }
