@@ -48,7 +48,7 @@ document.getElementById("registerForm").addEventListener("submit", async (event)
     if (response.ok) {
       alert("Registration successful!");
       event.target.reset(); // Reset the form
-      window.location.href = "/public/login.html"; // Redirect to login page
+      window.location.href = "/login.html"; // Redirect to login page
     } else {
       alert(`Error: ${result.message || "Something went wrong!"}`);
     }

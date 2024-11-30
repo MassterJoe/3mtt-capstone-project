@@ -28,7 +28,7 @@ document.getElementById('loginForm').addEventListener('submit', async (event) =>
       // Save token and redirect
       localStorage.setItem('authToken', result.token);
       alert('Login successful!');
-      window.location.href = '/public/dashboard.html'; // Redirect to dashboard page
+      window.location.href = '/dashboard.html'; // Redirect to dashboard page
     } else {
       alert(`Error: ${result.message || 'Login failed. Please try again.'}`);
     }
