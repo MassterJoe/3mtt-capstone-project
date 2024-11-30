@@ -2,7 +2,7 @@
 
 
 header h1{
-    color: #F5F2FF;
+    color: whitesmoke;
     font-family: 'Poppins';
     font-size:500%;
 }
@@ -12,12 +12,13 @@ body{
     font-family: 'Poppins', sans-serif;
     display: grid;
     place-items: center;
-    margin-top: 10%;
+    margin-top: 5%;
+    background-color: #27104E;
 }
 
 #taskFormContainer{
     padding: 20px;
-    border: solid #FCA465;
+    border: solid white;
     border-radius: 10px;
     height: auto;
     width: auto;
@@ -25,7 +26,7 @@ body{
 }
 
 #taskListContainer{
-background-color: #fab27e;
+background-color: white;
 margin: 0px 20px;
 border-radius: 10px;
 text-align: center;
@@ -80,3 +81,6 @@ h2,h3,h4,h5,h6{
     color: #27104E;
 }
 
+strong{
+    color: blueviolet;
+}

@@ -10,7 +10,7 @@
 }
 
 body{
-    background-color: #f8d7bf;
+    background-image: url(../img/background.jpg);
 }
 
 
@@ -26,18 +26,26 @@ body{
     
 }
 
+.textBtn:hover{
+    color: white;
+}
+
 .fillBtn {
     font-family: "Poppins";
     font-size: 1rem;
     font-weight: 400;
     border-radius: 0.5rem;
     border: none;
-    background-color: #27104E;
+    background-color: #352353;
     color: #FCFBFF;
     padding: 0.8rem 1.2rem;
     
 }
 
+.fillBtn:hover{
+    background-color: white;
+    color: #27104E;
+}
 .mainHero{
     padding-top: 6rem;
     display: flex;
@@ -49,8 +57,12 @@ body{
     margin-top: 5%;
 }
 
+.mainHero{
+    margin-top: 2%;
+}
 .mainHero h1{
-    font-size: 50px;
+    font-size: 80px;
+color: white;
 }
 
 .mainHero button{
