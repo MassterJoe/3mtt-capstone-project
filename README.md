@@ -10,6 +10,9 @@
 See live site at: https://threemtt-project-dy13.onrender.com
 Swagger documentation at https://threemtt-capstone-project-c0vy.onrender.com/api-docs/#/
 
+Project files:
+backend branch: https://github.com/MassterJoe/3mtt-capstone-project/tree/backend
+frontend branch; https://github.com/MassterJoe/3mtt-capstone-project/tree/frontend
 ## 🚀 Features
 
 - **User Registration and Authentication**: Secure login and registration using JWT or sessions.
