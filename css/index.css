@@ -133,10 +133,10 @@ margin-bottom: 60px;
     font-family: 'Poppins';
 }
 
-.projects h3 {
+.projects   h3 {
     color: #FCA465;
 
-}
+}   
 .progress-bar{
     width: 0%;
     height: 100%;
@@ -200,3 +200,37 @@ hr{
 
 
 
+.create-task a{
+text-decoration: none;
+}
+
+.search-results {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+
+.task-item h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.search-results-container {
+    max-height: 200px; /* Adjust this to set the visible height */
+    overflow-y: auto;  /* Enables vertical scrolling */
+    padding: 10px;     /* Optional: Adds padding inside the container */
+    background-color: #f9f9f9; /* Optional: Sets a light background color */
+    border-radius: 5px; /* Optional: Adds rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    width: 600px;
+}
+
+.task-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
