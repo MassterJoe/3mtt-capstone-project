@@ -129,3 +129,13 @@ function clearSearchResults() {
     resultsContainer.innerHTML = ""; // Clear the results from the screen
 }
 
+document.getElementById("logoutBtn").addEventListener("click", () => {
+    // Clear the token from localStorage
+    localStorage.removeItem("authToken");
+
+    // Optionally clear other user-related data
+    localStorage.removeItem("userData");
+    alert("You logged out successfully")
+    // Redirect to the login page
+    window.location.href = "/public/login.html";
+});

@@ -86,7 +86,7 @@ justify-content: space-between;
     margin-left: 20px;
 }
 
-.todays-task button{
+.todays-task button, #logoutBtn{
 width: 180px;
 height: 38px;
 background-color: #27104E;
